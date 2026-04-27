@@ -1,0 +1,82 @@
+name: arista-lab2
+
+topology:
+  nodes:
+    spine1:
+      kind: arista_ceos
+      image: ceos:4.36.0F
+      mgmt-ipv4: 172.20.20.101
+
+    spine2:
+      kind: arista_ceos
+      image: ceos:4.36.0F
+      mgmt-ipv4: 172.20.20.102
+
+    leaf1:
+      kind: arista_ceos
+      image: ceos:4.36.0F
+      mgmt-ipv4: 172.20.20.103
+
+    leaf2:
+      kind: arista_ceos
+      image: ceos:4.36.0F
+      mgmt-ipv4: 172.20.20.104
+
+    leaf3:
+      kind: arista_ceos
+      image: ceos:4.36.0F
+      mgmt-ipv4: 172.20.20.105
+
+    client1:
+      kind: linux
+      image: alpine:latest
+      exec:
+        ip link set eth1 up
+        ip addr add 192.168.100.11/24 dev eth1
+        ip route del default
+        ip route add default via 192.168.100.1/24 dev eth1
+
+    client2:
+      kind: linux
+      image: alpine:latest
+      exec:
+        ip link set eth1 up
+        ip addr add 192.168.100.12/24 dev eth1
+        ip route del default
+        ip route add default via 192.168.100.1/24 dev eth1
+
+    client3:
+      kind: linux
+      image: alpine:latest
+      exec:
+        ip link set eth1 up
+        ip addr add 192.168.100.13/24 dev eth1
+        ip route del default
+        ip route add default via 192.168.100.1/24 dev eth1
+
+    client11:
+      kind: linux
+      image: alpine:latest
+      exec:
+        ip link set eth1 up
+        ip addr add 192.168.100.111/24 dev eth1
+        ip route del default
+        ip route add default via 192.168.100.1/24 dev eth1
+
+    client12:
+      kind: linux
+      image: alpine:latest
+      exec:
+        ip link set eth1 up
+        ip addr add 192.168.100.112/24 dev eth1
+        ip route del default
+        ip route add default via 192.168.100.1/24 dev eth1
+
+    client13:
+      kind: linux
+      image: alpine:latest
+      exec:
+        ip link set eth1 up
+        ip addr add 192.168.100.113/24 dev eth1
+        ip route del default
+        ip route add default via 192.168.100.1/24 dev eth1
