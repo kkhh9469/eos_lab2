@@ -1,0 +1,7 @@
+interfaces:
+  - id: 'eth1'
+    name: 'Ethernet1'
+    ipv4: 10.0.0.1/30
+  - id: 'eth2'
+    name: 'Ethernet2'
+    ipv4: '10.0.0.5/30'

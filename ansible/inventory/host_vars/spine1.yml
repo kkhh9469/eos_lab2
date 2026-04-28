@@ -1,0 +1,3 @@
+interfaces:
+  ipv4:
+  vlan: '100'
