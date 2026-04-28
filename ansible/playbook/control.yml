@@ -1,14 +1,55 @@
 ---
-- name: controller
+# - name: glbal
+#   hosts: arista_nodes
+#   gather_facts: false
+
+#   roles:
+#     - enable_api
+
+
+- name: glbal
+  hosts: arista_nodes
+  gather_facts: false
+
+  tasks:
+    - name: config vlan
+      arista.eos.eos_config:
+        lines:
+          - vlan 100
+          - vlan 101
+
+
+- name: config access int
   hosts: leaf
   gather_facts: false
 
   tasks:
-  - name: config vlan
-    arista.eos.eos_config:
-      lines:
-        - vlan 10
-        # - intterface {{ item.name }}
-        # - switchport mode access
-        # - switchport access vlan {{ item.vlan }}
-    # loop: "{{ interfaces }}"
+    - name: config access int
+      arista.eos.eos_config:
+        parents: interface {{ item.name }}
+        lines:
+          - sw mode access
+          - sw access vlan {{ item.vlan }}
+      loop: '{{ access_interfaces }}'
+
+    - name: config trunk int (leaf)
+      arista.eos.eos_config:
+        parents: interface {{ item.name }}
+        lines:
+          - sw mode trunk
+          - sw trunk allowed vlan add {{ vlan_range }}
+      loop: '{{ trunk_interfaces }}'
+
+
+- name: config trunk int (spine)
+  hosts: spine
+  gather_facts: false
+
+  tasks:
+    - name: config trunk int (leaf)
+      arista.eos.eos_config:
+        parents: interface {{ item.name }}
+        lines:
+          - sw mode trunk
+          - sw trunk allowed vlan add {{ vlan_range }}
+      loop: '{{ interfaces }}'

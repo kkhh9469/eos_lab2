@@ -1,0 +1,5 @@
+- name: enable api
+  arista.eos.eos_config:
+    lines:
+      - no shutdown
+    parents: management api http-commands

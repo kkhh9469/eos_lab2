@@ -1,18 +1,19 @@
-interfaces:
+trunk_interfaces:
   - id: 'eth1'
-    name: 'Ethernet1'
+    name: 'Ethernet 1'
     ipv4: 10.0.0.6/30
-    vlan: 1
+    vlan: '1'
 
   - id: 'eth2'
-    name: 'Ethernet2'
+    name: 'Ethernet 2'
     ipv4: '10.0.0.18/30'
-    vlan: 1
+    vlan: '1'
 
+access_interfaces:
   - id: 'eth10'
-    name: 'Ethernet10'
+    name: 'Ethernet 10'
     vlan: '100'
     
   - id: 'eth11'
-    name: 'Ethernet11'
+    name: 'Ethernet 11'
     vlan: '101'
