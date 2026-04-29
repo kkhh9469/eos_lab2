@@ -1,0 +1,16 @@
+trunk_interfaces:
+  - id: eth1
+    name: 'ethernet 1'
+    vlan:
+      - 10
+      - 20
+      - 30
+
+
+access_interfaces:
+  - id: eth2
+    name: 'ethernet 2'
+    vlan: 10
+  - id: eth3
+    name: 'ethernet 3'
+    vlan: 20

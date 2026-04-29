@@ -1,0 +1,8 @@
+vlan_interfaces:
+  - id: vlan_10
+    name: 'vlan 10'
+  - id: vlan_20
+    name: 'vlan 20'
+  - id: vlan_30
+    name: 'vlan 30'
+

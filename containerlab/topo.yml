@@ -34,7 +34,7 @@ topology:
         - ip link set eth1 up
         - ip addr add 192.168.130.11/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.130.1/24 dev eth1
+        - ip route add default via 192.168.130.1 dev eth1
 
     pc1:
       kind: linux
@@ -43,7 +43,7 @@ topology:
         - ip link set eth1 up
         - ip addr add 192.168.110.11/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.110.1/24 dev eth1
+        - ip route add default via 192.168.110.1 dev eth1
 
     pc2:
       kind: linux
@@ -52,7 +52,7 @@ topology:
         - ip link set eth1 up
         - ip addr add 192.168.110.12/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.110.1/24 dev eth1
+        - ip route add default via 192.168.110.1 dev eth1
 
     pc3:
       kind: linux
@@ -61,7 +61,7 @@ topology:
         - ip link set eth1 up
         - ip addr add 192.168.110.13/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.110.1/24 dev eth1
+        - ip route add default via 192.168.110.1 dev eth1
 
     ap1:
       kind: linux
@@ -70,7 +70,7 @@ topology:
         - ip link set eth1 up
         - ip addr add 192.168.120.11/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.120.1/24 dev eth1
+        - ip route add default via 192.168.120.1 dev eth1
 
     ap2:
       kind: linux
@@ -79,7 +79,7 @@ topology:
         - ip link set eth1 up
         - ip addr add 192.168.120.12/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.120.1/24 dev eth1
+        - ip route add default via 192.168.120.1 dev eth1
 
     ap3:
       kind: linux
@@ -88,7 +88,7 @@ topology:
         - ip link set eth1 up
         - ip addr add 192.168.120.13/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.120.1/24 dev eth1
+        - ip route add default via 192.168.120.1 dev eth1
 
   links:
     - endpoints: ['internet:eth1', 'core:eth4']

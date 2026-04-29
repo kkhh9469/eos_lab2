@@ -1,0 +1,10 @@
+vlans:
+  - id: vlan10
+    name: employee
+    vlan: '10'
+  - id: vlan20
+    name: guest
+    vlan: '20'
+  - id: vlan30
+    name: server
+    vlan: '30'
