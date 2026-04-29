@@ -1,6 +1,6 @@
 ---
 - name: controller
-  hosts: leaf
+  hosts: accesses
   gather_facts: false
 
   tasks:
@@ -8,7 +8,3 @@
     arista.eos.eos_config:
       lines:
         - vlan 10
-        # - intterface {{ item.name }}
-        # - switchport mode access
-        # - switchport access vlan {{ item.vlan }}
-    # loop: "{{ interfaces }}"

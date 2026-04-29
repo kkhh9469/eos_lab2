@@ -2,95 +2,103 @@ name: arista-lab2
 
 topology:
   nodes:
-    spine1:
+    internet:
       kind: arista_ceos
       image: ceos:4.36.0F
       mgmt-ipv4: 172.20.20.101
 
-    spine2:
+    core:
       kind: arista_ceos
       image: ceos:4.36.0F
       mgmt-ipv4: 172.20.20.102
 
-    leaf1:
+    access1:
       kind: arista_ceos
       image: ceos:4.36.0F
       mgmt-ipv4: 172.20.20.103
 
-    leaf2:
+    access2:
       kind: arista_ceos
       image: ceos:4.36.0F
       mgmt-ipv4: 172.20.20.104
 
-    leaf3:
+    access3:
       kind: arista_ceos
       image: ceos:4.36.0F
       mgmt-ipv4: 172.20.20.105
 
-    client1:
+    server:
       kind: linux
       image: alpine:latest
       exec:
         - ip link set eth1 up
-        - ip addr add 192.168.100.11/24 dev eth1
+        - ip addr add 192.168.130.11/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.100.1/24 dev eth1
+        - ip route add default via 192.168.130.1/24 dev eth1
 
-    client2:
+    pc1:
       kind: linux
       image: alpine:latest
       exec:
         - ip link set eth1 up
-        - ip addr add 192.168.100.12/24 dev eth1
+        - ip addr add 192.168.110.11/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.100.1/24 dev eth1
+        - ip route add default via 192.168.110.1/24 dev eth1
 
-    client3:
+    pc2:
       kind: linux
       image: alpine:latest
       exec:
         - ip link set eth1 up
-        - ip addr add 192.168.100.13/24 dev eth1
+        - ip addr add 192.168.110.12/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.100.1/24 dev eth1
+        - ip route add default via 192.168.110.1/24 dev eth1
 
-    client11:
+    pc3:
       kind: linux
       image: alpine:latest
       exec:
         - ip link set eth1 up
-        - ip addr add 192.168.100.111/24 dev eth1
+        - ip addr add 192.168.110.13/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.100.1/24 dev eth1
+        - ip route add default via 192.168.110.1/24 dev eth1
 
-    client12:
+    ap1:
       kind: linux
       image: alpine:latest
       exec:
         - ip link set eth1 up
-        - ip addr add 192.168.100.112/24 dev eth1
+        - ip addr add 192.168.120.11/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.100.1/24 dev eth1
+        - ip route add default via 192.168.120.1/24 dev eth1
 
-    client13:
+    ap2:
       kind: linux
       image: alpine:latest
       exec:
         - ip link set eth1 up
-        - ip addr add 192.168.100.113/24 dev eth1
+        - ip addr add 192.168.120.12/24 dev eth1
         - ip route del default
-        - ip route add default via 192.168.100.1/24 dev eth1
+        - ip route add default via 192.168.120.1/24 dev eth1
+
+    ap3:
+      kind: linux
+      image: alpine:latest
+      exec:
+        - ip link set eth1 up
+        - ip addr add 192.168.120.13/24 dev eth1
+        - ip route del default
+        - ip route add default via 192.168.120.1/24 dev eth1
 
   links:
-    - endpoints: ['spine1:eth1', 'leaf1:eth1']
-    - endpoints: ['spine1:eth2', 'leaf2:eth1']
-    - endpoints: ['spine1:eth3', 'leaf3:eth1']
-    - endpoints: ['spine2:eth1', 'leaf1:eth2']
-    - endpoints: ['spine2:eth2', 'leaf2:eth2']
-    - endpoints: ['spine2:eth3', 'leaf3:eth2']
-    - endpoints: ['leaf1:eth10', 'client1:eth1']
-    - endpoints: ['leaf1:eth11', 'client11:eth1']
-    - endpoints: ['leaf2:eth10', 'client2:eth1']
-    - endpoints: ['leaf2:eth11', 'client12:eth1']
-    - endpoints: ['leaf3:eth10', 'client3:eth1']
-    - endpoints: ['leaf3:eth11', 'client13:eth1']
+    - endpoints: ['internet:eth1', 'core:eth4']
+    - endpoints: ['core:eth1', 'access1:eth1']
+    - endpoints: ['core:eth2', 'access2:eth1']
+    - endpoints: ['core:eth3', 'access3:eth1']
+    - endpoints: ['access1:eth2', 'pc1:eth1']
+    - endpoints: ['access1:eth3', 'ap1:eth1']
+    - endpoints: ['access2:eth2', 'pc2:eth1']
+    - endpoints: ['access2:eth3', 'ap2:eth1']
+    - endpoints: ['access3:eth2', 'pc3:eth1']
+    - endpoints: ['access3:eth3', 'ap3:eth1']
+    - endpoints: ['access3:eth4', 'server:eth1']
