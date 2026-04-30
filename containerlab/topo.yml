@@ -91,10 +91,10 @@ topology:
         - ip route add default via 192.168.120.1 dev eth1
 
   links:
-    - endpoints: ['internet:eth1', 'core:eth4']
-    - endpoints: ['core:eth1', 'access1:eth1']
-    - endpoints: ['core:eth2', 'access2:eth1']
-    - endpoints: ['core:eth3', 'access3:eth1']
+    - endpoints: ['internet1:eth1', 'core1:eth4']
+    - endpoints: ['core1:eth1', 'access1:eth1']
+    - endpoints: ['core1:eth2', 'access2:eth1']
+    - endpoints: ['core1:eth3', 'access3:eth1']
     - endpoints: ['access1:eth2', 'pc1:eth1']
     - endpoints: ['access1:eth3', 'ap1:eth1']
     - endpoints: ['access2:eth2', 'pc2:eth1']
