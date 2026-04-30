@@ -2,12 +2,12 @@ name: arista-lab2
 
 topology:
   nodes:
-    internet:
+    internet1:
       kind: arista_ceos
       image: ceos:4.36.0F
       mgmt-ipv4: 172.20.20.101
 
-    core:
+    core1:
       kind: arista_ceos
       image: ceos:4.36.0F
       mgmt-ipv4: 172.20.20.102

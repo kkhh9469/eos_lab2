@@ -11,6 +11,12 @@ access_interfaces:
   - id: eth2
     name: 'ethernet 2'
     vlan: 10
+    vlan_name: 'employee'
   - id: eth3
     name: 'ethernet 3'
     vlan: 20
+    vlan_name: 'guest'
+  - id: eth4
+    name: 'ethernet 4'
+    vlan: 30
+    vlan_name: 'server'
