@@ -1,0 +1,15 @@
+internet_interface:
+  - id: eth1
+    name: 'ethernet 1'
+    ipv4: 10.0.0.2/30
+
+routing_network:
+  - id: vlan_10
+    network: 192.168.110.0/24
+    next_hop: 10.0.0.1
+  - id: vlan_20
+    network: 192.168.120.0/24
+    next_hop: 10.0.0.1
+  - id: vlan_30
+    network: 192.168.130.0/24
+    next_hop: 10.0.0.1

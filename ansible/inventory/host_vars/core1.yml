@@ -29,9 +29,27 @@ vlan_interfaces:
 trunk_interfaces:
   - id: eth1
     name: 'ethernet 1'
+    vlans:
+      - 10
+      - 20
+      - 30
 
   - id: eth2
     name: 'ethernet 2'
+    vlans:
+      - 10
+      - 20
+      - 30
 
   - id: eth3
     name: 'ethernet 3'
+    vlans:
+      - 10
+      - 20
+      - 30
+
+
+internet_interface:
+  - id: eth4
+    name: 'ethernet 4'
+    ipv4: 10.0.0.1/30
