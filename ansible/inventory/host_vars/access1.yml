@@ -9,9 +9,9 @@ trunk_interfaces:
 access_interfaces:
   - id: eth2
     name: 'ethernet 2'
-    vlan: '10'
+    vlan: 10
     vlan_name: 'employee'
   - id: eth3
     name: 'ethernet 3'
-    vlan: '20'
+    vlan: 20
     vlan_name: 'guest'

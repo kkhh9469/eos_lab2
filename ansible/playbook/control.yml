@@ -6,22 +6,22 @@
   tasks:
   - name: create vlan
     arista.eos.eos_config:
-      parents: vlan '{{ item.vlan }}'
+      parents: vlan {{ item.vlan }}
       lines:
-        - name '{{ item.vlan_name }}'
-    loop: '{{ access_interfaces }}'
+        - name {{ item.vlan_name }}
+    loop: "{{ access_interfaces }}"
 
   - name: attatch vlan to interface
     arista.eos.eos_config:
-      parents: interface '{{ item.name }}' 
+      parents: interface {{ item.name }} 
       lines:
-        - switchport access vlan '{{ item.vlan }}'
-    loop: '{{ access_interfaces }}'
+        - switchport access vlan {{ item.vlan }}
+    loop: "{{ access_interfaces }}"
 
   - name: config trunk interfaces
     arista.eos.eos_config:
-      parents: interface '{{ item.name }}'
+      parents: interface {{ item.name }}
       lines:
         - switchport mode trunk
-        - switchport trunk allowed '{{ item.vlan | join(,) }}'
-    loop: '{{ trunk_interfaces }}'
+        - switchport trunk allowed vlan {{ item.vlan | join(',') }}
+    loop: "{{ trunk_interfaces }}"
