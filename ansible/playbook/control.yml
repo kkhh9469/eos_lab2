@@ -1,27 +1,64 @@
 ---
-- name: access_nodes
-  hosts: access
+# - name: access_nodes
+#   hosts: access
+#   gather_facts: false
+
+#   tasks:
+#   - name: create vlan
+#     arista.eos.eos_config:
+#       parents: vlan {{ item.vlan }}
+#       lines:
+#         - name {{ item.vlan_name }}
+#     loop: "{{ access_interfaces }}"
+
+#   - name: attatch vlan to interface
+#     arista.eos.eos_config:
+#       parents: interface {{ item.name }} 
+#       lines:
+#         - switchport access vlan {{ item.vlan }}
+#     loop: "{{ access_interfaces }}"
+
+#   - name: config trunk interfaces
+#     arista.eos.eos_config:
+#       parents: interface {{ item.name }}
+#       lines:
+#         - switchport mode trunk
+#         - switchport trunk allowed vlan {{ item.vlan | join(',') }}
+#     loop: "{{ trunk_interfaces }}"
+
+- name: core_nodes
+  hosts: core
   gather_facts: false
 
   tasks:
-  - name: create vlan
-    arista.eos.eos_config:
-      parents: vlan {{ item.vlan }}
-      lines:
-        - name {{ item.vlan_name }}
-    loop: "{{ access_interfaces }}"
+    - name: create vlan
+      arista.eos.eos_config:
+        parents: vlan {{ item.vlan }}
+        lines:
+          - name {{ item.vlan_name }}
+      loop: "{{ vlans }}"
 
-  - name: attatch vlan to interface
-    arista.eos.eos_config:
-      parents: interface {{ item.name }} 
-      lines:
-        - switchport access vlan {{ item.vlan }}
-    loop: "{{ access_interfaces }}"
+    - name: config interfaces trunk mode
+      arista.eos.eos_config:
+        parents: interface {{ item.name }}
+        lines:
+          - switchport mode trunk
+      loop: "{{ trunk_interfaces }}"
 
-  - name: config trunk interfaces
-    arista.eos.eos_config:
-      parents: interface {{ item.name }}
-      lines:
-        - switchport mode trunk
-        - switchport trunk allowed vlan {{ item.vlan | join(',') }}
-    loop: "{{ trunk_interfaces }}"
+    - name: create vlan interfaces
+      arista.eos.eos_config:
+        lines:
+          - interface {{ item.name }}
+      loop: "{{ vlan_interfaces }}"
+
+    - name: config ipv4 in vlan interfaces
+      arista.eos.eos_config:
+        parents: interface {{ item.name }}
+        lines:
+          - ip address {{ item.ipv4 }}
+      loop: "{{ vlan_interfaces }}"
+
+    - name: enable routing
+      arista.eos.eos_config:
+        lines:
+          - ip routing

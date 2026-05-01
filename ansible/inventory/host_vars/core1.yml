@@ -1,8 +1,37 @@
+vlans:
+  - id: vlan_10
+    vlan: 10
+    vlan_name: 'employee'
+
+  - id: vlan_20
+    vlan: 20
+    vlan_name: 'guest'
+
+  - id: vlan_30
+    vlan: 30
+    vlan_name: 'server'
+  
+
 vlan_interfaces:
   - id: vlan_10
     name: 'vlan 10'
+    ipv4: '192.168.110.1/24'
+
   - id: vlan_20
     name: 'vlan 20'
+    ipv4: '192.168.120.1/24'
+
   - id: vlan_30
     name: 'vlan 30'
+    ipv4: '192.168.130.1/24'
 
+
+trunk_interfaces:
+  - id: eth1
+    name: 'ethernet 1'
+
+  - id: eth2
+    name: 'ethernet 2'
+
+  - id: eth3
+    name: 'ethernet 3'
