@@ -58,8 +58,7 @@
         lines:
           - ip address {{ item.ipv4 }}
       loop: "{{ vlan_interfaces }}"
-
-
+      
     - name: config internet interface
       arista.eos.eos_config:
         parents: interface {{ item.name }}
