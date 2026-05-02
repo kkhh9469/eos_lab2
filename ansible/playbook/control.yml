@@ -88,3 +88,15 @@
         lines:
           - ip route {{ item.network }} {{ item.next_hop }}
       loop: "{{ routing_network }}"
+
+- name: core/access nodes
+  hosts: core, access
+  gather_facts: false
+
+  tasks:
+    - name: enable api
+      arista.eos.eos_config:
+        parents: management api http-commands
+        lines:
+          - no shutdown
+          - protocol http
